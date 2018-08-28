@@ -1,16 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-class PokemonSelector extends React.Component {
+const PokemonSelector = (props) => {
+  function handleChange(evt) {
+    props.onPokemonSelected(evt.target.value);
 
+  }
 
-  render() {
+  const options = props.pokemon.map((pokemon, index) => {
+    return <option value={index} key={index} >{pokemon.name}</option>
+  });
+
     return(
       <select className = "pokemon-selector">
         <option disabled value="selected">Select a Pokemon…</option>
-        {props}
+        {options}
       </select>
     )
-  }
 }
 
-export default PokemonSelector
+export default PokemonSelector;

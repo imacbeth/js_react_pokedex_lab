@@ -8,6 +8,7 @@ class Pokedex extends React.Component{
       pokemon: [],
       selectedPokemon: null
     }
+    this.handlePokemonSelected = this.handlePokemonSelected.bind(this)
   }
 
   componentDidMount() {
@@ -17,17 +18,26 @@ class Pokedex extends React.Component{
       return res.json();
     })
     .then((pokemon) => {
-      this.setState({pokemon: pokemon})
+      console.log(pokemon);
+      this.setState({pokemon: pokemon.results})
     })
+  }
+
+  handlePokemonSelected(index){
+    const selectedPokemon = this.state.pokemon[index];
+    this.setState({selectedPokemon: selectedPokemon});
   }
 
   render() {
     return (
       <div>
         <h1>Choose your Pokemon!</h1>
-        <PokemonSelector pokemon = {this.state.pokemon}/>
+        <PokemonSelector
+          pokemon = {this.state.pokemon}
+          onPokemonSelected={this.handlePokemonSelected}
+        />
         <h3>I choose you ... </h3>
-        <PokemonDetails/>
+        {/* <PokemonDetails/> */}
       </div>
     );
 
