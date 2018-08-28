@@ -11,7 +11,11 @@ const PokemonSelector = (props) => {
   });
 
     return(
-      <select className = "pokemon-selector">
+      <select
+        className = "pokemon-selector"
+        defaultValue="default"
+        onChange={handleChange}
+        >
         <option disabled value="selected">Select a Pokemon…</option>
         {options}
       </select>
